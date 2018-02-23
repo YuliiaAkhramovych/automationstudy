@@ -11,51 +11,20 @@ namespace GlobalProject
         static void Main(string[] args)
         {
             Random random = new Random();
-            var x = random.Next(100);
-            var y = random.Next(0);
+            var listLength = random.Next(100);
 
-            Console.WriteLine("Hi there! Try to guess my number");
-            var i = 0;
-
-            do
+            List<int> numbers = new List<int>();
+            for (int i = 0; i < listLength; i++)
             {
+                numbers.Add(random.Next(100));
+            }
 
+            Console.WriteLine("The sum of values is: " + numbers.Sum());
+            Console.WriteLine("Min value is: " + numbers.Min());
+            Console.WriteLine("Max value is: " + numbers.Max());
+            Console.WriteLine("The avarage of values is: " + Math.Round(numbers.Average(), 1));
 
-                bool isValid = int.TryParse(Console.ReadLine(), out y);
-                if (isValid)
-                {
-
-                    i++;
-                    if (x < y && x != y)
-                    {
-                        ShowResult("bigger");
-                        continue;
-                    }
-
-                    if (x > y && x != y)
-                    {
-                        ShowResult("smaller");
-                        continue;
-                    }
-
-                }
-                else
-                {
-                    Console.WriteLine("Enter a number");
-                }
-
-            } while (x != y);
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("Congratulations! Your number is correct");
-            Console.WriteLine($"You've made {i} attempt(s)");
             Console.ReadLine();
-
-        }
-        static void ShowResult(string result)
-        {
-            Console.WriteLine("Wrong value");
-            //Console.WriteLine("Your value is " + result + " than mine. Try again");
-            Console.WriteLine($"Your value is {result} than mine. Try again");
         }
     }
 }
