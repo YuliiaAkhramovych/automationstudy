@@ -10,21 +10,20 @@ namespace GlobalProject
     {
         static void Main(string[] args)
         {
-            Random random = new Random();
-            var listLength = random.Next(100);
-            List<int> numbers = new List<int>();
 
-            for (int i = 0; i < listLength; i++)
-            {
-                numbers.Add(random.Next(100));
-                Console.WriteLine(numbers[i]);
+            char[] symbols = new Char[] { ' ', '.', ',', ':', ';', '(', ')', '[', ']', '“', '‘', '/', '!', '?' };
 
-            }
+            var shortWords = Console.ReadLine()
+                .Split(symbols)
+                .Where(w => w != string.Empty)
+                .Where(w => w.Length < 5)
+                .OrderBy(word => word)
+                .Select(a => a.ToLower()).Distinct();
 
-            var sortedNumbers = numbers.OrderByDescending(number => number).Take(3).ToList();
+            Console.WriteLine(string.Join(", ", shortWords));
 
-            Console.WriteLine($"The largest three numbers are: {string.Join(", ", sortedNumbers)}");
             Console.ReadLine();
+
         }
     }
 }
