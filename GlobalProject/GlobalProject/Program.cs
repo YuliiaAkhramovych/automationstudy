@@ -11,29 +11,51 @@ namespace GlobalProject
         static void Main(string[] args)
         {
             Random random = new Random();
-            var arrayLength = random.Next(100);
-            var array = new int[arrayLength];
+            var x = random.Next(100);
+            var y = random.Next(0);
 
+            Console.WriteLine("Hi there! Try to guess my number");
+            var i = 0;
 
-            for (int i = 0; i < arrayLength; i++)
+            do
             {
-                array[i] = random.Next(0, 500);
-            }
 
-            for (int i = 0; i < arrayLength; i++)
-            {
-                if (array[i] % 2 == 0)
+
+                bool isValid = int.TryParse(Console.ReadLine(), out y);
+                if (isValid)
                 {
-                    Console.WriteLine("Even: " + array[i]);
-                }
 
+                    i++;
+                    if (x < y && x != y)
+                    {
+                        ShowResult("bigger");
+                        continue;
+                    }
+
+                    if (x > y && x != y)
+                    {
+                        ShowResult("smaller");
+                        continue;
+                    }
+
+                }
                 else
                 {
-                    Console.WriteLine("Odd: " + array[i]);
+                    Console.WriteLine("Enter a number");
                 }
-            }
 
+            } while (x != y);
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Congratulations! Your number is correct");
+            Console.WriteLine($"You've made {i} attempt(s)");
             Console.ReadLine();
+
+        }
+        static void ShowResult(string result)
+        {
+            Console.WriteLine("Wrong value");
+            //Console.WriteLine("Your value is " + result + " than mine. Try again");
+            Console.WriteLine($"Your value is {result} than mine. Try again");
         }
     }
 }
