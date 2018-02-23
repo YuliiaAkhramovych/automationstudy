@@ -8,7 +8,7 @@ namespace GlobalProject
 {
     class Program
     {
-        {
+        
         static void Main(string[] args)
         {
             Human kate = new Human();
@@ -95,4 +95,4 @@ namespace GlobalProject
         }
     }
 }
-}
+
