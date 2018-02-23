@@ -12,18 +12,18 @@ namespace GlobalProject
         {
             Random random = new Random();
             var listLength = random.Next(100);
-
             List<int> numbers = new List<int>();
+
             for (int i = 0; i < listLength; i++)
             {
                 numbers.Add(random.Next(100));
+                Console.WriteLine(numbers[i]);
+
             }
 
-            Console.WriteLine("The sum of values is: " + numbers.Sum());
-            Console.WriteLine("Min value is: " + numbers.Min());
-            Console.WriteLine("Max value is: " + numbers.Max());
-            Console.WriteLine("The avarage of values is: " + Math.Round(numbers.Average(), 1));
+            var sortedNumbers = numbers.OrderByDescending(number => number).Take(3).ToList();
 
+            Console.WriteLine($"The largest three numbers are: {string.Join(", ", sortedNumbers)}");
             Console.ReadLine();
         }
     }
