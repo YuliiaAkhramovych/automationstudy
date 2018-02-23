@@ -8,54 +8,91 @@ namespace GlobalProject
 {
     class Program
     {
+        {
         static void Main(string[] args)
         {
-            Random random = new Random();
-            var x = random.Next(100);
-            var y = random.Next(0);
+            Human kate = new Human();
+            kate.Name = "Kate";
+            Fridge samsung = new Fridge("Samsung", 1990);
+            Fridge indesit = new Fridge("Indesit", 2000);
+            Food food = new Food("milk");
 
-            Console.WriteLine("Hi there! Try to guess my number");
-            var i = 0;
+            Bed ikeaBed = new Bed("Ikea");
 
-            do
+            Cupboard myCupboard = new Cupboard();
+            myCupboard.WhatCupboard = "clothes cupboard";
+            Clothes todaysWear1 = new Clothes("dress");
+            Cupboard kitchenCupboard = new Cupboard();
+            kitchenCupboard.WhatCupboard = "kitchen cupboard";
+            Books nightBook = new Books();
+            nightBook.whatBook = "\"Learn C# in one day and learn it well\"";
+
+
+
+
+
+
+
+
+            kate.WakeUp();
+            kate.GoTo("7:40 - ", "bathroom");
+            kate.TakeShower("7:40 - ");
+
+
+            kate.GoTo("8:00 - ", "kitchen");
+            try
             {
+                kate.Take(food, samsung);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                kate.Eat(food, samsung);
+            }
+            catch (Exception ex)
+
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            kate.Cover(ikeaBed);
 
 
-                bool isValid = int.TryParse(Console.ReadLine(), out y);
-                if (isValid)
-                {
+            try
+            {
+                kate.Wear(todaysWear1, myCupboard);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
-                    i++;
-                    if (x < y && x != y)
-                    {
-                        ShowResult("bigger");
-                        continue;
-                    }
 
-                    if (x > y && x != y)
-                    {
-                        ShowResult("smaller");
-                        continue;
-                    }
 
-                }
-                else
-                {
-                    Console.WriteLine("Enter a number");
-                }
+            kate.GoTo("9:00 - ", "office");
+            kate.Work("9:30 - ", "documents");
+            kate.GoTo("13:00 - ", "lanch");
+            kate.Return("14:00 - ", "office");
+            kate.Work("14:00 - ", "bookkeeping");
+            kate.Return("19:00 - ", "home");
 
-            } while (x != y);
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("Congratulations! Your number is correct");
-            Console.WriteLine($"You've made {i} attempt(s)");
+            kate.GoTo("19:30 - ", "kitchen");
+            kate.TakeDinner("spaghetti", kitchenCupboard);
+            kate.Cook("dinner");
+            kate.Eat1();
+            kate.Read(nightBook);
+            kate.GoTo("22:00 - ", "bathroom");
+            kate.TakeShower("22:00 - ");
+            kate.GoSleep("22:30 - ");
+
+
             Console.ReadLine();
 
         }
-        static void ShowResult(string result)
-        {
-            Console.WriteLine("Wrong value");
-            //Console.WriteLine("Your value is " + result + " than mine. Try again");
-            Console.WriteLine($"Your value is {result} than mine. Try again");
-        }
     }
+}
 }
